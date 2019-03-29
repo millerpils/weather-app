@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import WeatherCard from './components/WeatherCard'
+
+const config = {
+  apiKey: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
+}
 
 class App extends Component {
+
+  constructor() {
+    super()
+    this.state = {
+      weatherData: ""
+    }
+  }
+
+  componentDidMount() {
+    //fetch("http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&cnt=5&APPID="+)
+    this.setState({ 
+      weatherData: "DATA"
+    })
+  }
+
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        {this.state.weatherData}  
+        <WeatherCard data={this.state.weatherData} />
       </div>
     );
   }
