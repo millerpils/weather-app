@@ -66,7 +66,9 @@ class App extends Component {
             />
           )
         }
-        {this.state.isLoaded && this.getWeatherCards()}
+        <div className="weather-cards">
+          {this.state.isLoaded && this.getWeatherCards()}
+        </div>
       </div>
     )
   }

@@ -2,9 +2,9 @@ import React from 'react';
 
 function Header(props) {
   return (
-    <div>
+    <header>
       <h2>{props.cityName}, {props.countryName}</h2>
-    </div>
+    </header>
   )
 }
 
