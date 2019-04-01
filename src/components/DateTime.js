@@ -7,7 +7,7 @@ class DateTime extends Component {
     super(props)
     this.state = {
       months: months,
-      dateInMilliseconds: props.dt * 1000
+      dateInMilliseconds: props.datetime * 1000
     }
     
     this.getDate = this.getDate.bind(this)
