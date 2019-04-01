@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import WeatherCard from './components/WeatherCard'
+import Header from './components/Header'
 
 const config = {
   API: "http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&cnt=5&APPID=",
@@ -13,9 +14,11 @@ class App extends Component {
     super()
     this.state = {
       error: null,
-      weatherdata: "",
+      weatherdata: {},
       isLoaded: false
     }
+
+    this.getWeatherCards = this.getWeatherCards.bind(this)
   }
 
   componentDidMount() {
@@ -37,12 +40,30 @@ class App extends Component {
     )
   }
 
+  getWeatherCards() {
+    let cards = []
+    
+    for (let i = 0; i < this.state.weatherdata.cnt; i++) {
+      cards.push(<WeatherCard key={i} datetime={this.state.weatherdata.list[i].dt} />)
+    }
+    
+    return cards
+  }
+
   render() {
     return (
       <div className="App">
-        <WeatherCard data={this.state.weatherdata} />
+        {
+          this.state.isLoaded && (
+            <Header 
+              cityName={this.state.weatherdata.city.name} 
+              countryName={this.state.weatherdata.city.country} 
+            />
+          )
+        }
+        {this.state.isLoaded && this.getWeatherCards()}
       </div>
-    );
+    )
   }
 }
 
