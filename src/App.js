@@ -4,7 +4,7 @@ import WeatherCard from './components/WeatherCard'
 import Header from './components/Header'
 
 const config = {
-  API: "http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&cnt=5&APPID=",
+  API: "http://api.openweathermap.org/data/2.5/forecast?q=London,uk&units=metric&cnt=15&APPID=",
   API_KEY: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
 }
 

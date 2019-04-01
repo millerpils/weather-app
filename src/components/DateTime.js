@@ -38,7 +38,7 @@ class DateTime extends Component {
     let dateString = this.getDay()+', ' + this.getMonth() + ', ' + this.getYear()
     return (
       <div>
-        {dateString}
+        <h3>{dateString}</h3>
       </div>
     )
   }
