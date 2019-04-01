@@ -44,7 +44,12 @@ class App extends Component {
     let cards = []
     
     for (let i = 0; i < this.state.weatherdata.cnt; i++) {
-      cards.push(<WeatherCard key={i} datetime={this.state.weatherdata.list[i].dt} />)
+      cards.push(
+        <WeatherCard 
+          key={i} 
+          weatherList={this.state.weatherdata.list[i]} 
+        />
+      )
     }
     
     return cards
