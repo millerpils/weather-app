@@ -29,15 +29,14 @@ class App extends Component {
 
   getWeatherData() {
     let URL = config.API + '?q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
-    console.log(URL)
 
     fetch(URL)
       .then( result => result.json() )
       .then ( 
         (result) => {
           if ( result.cod === '200') {
-            console.log(result.cod)
             this.setState({ 
+              status: result.cod,
               weatherdata: result,
               isLoaded: true
             })
@@ -81,19 +80,21 @@ class App extends Component {
   render() {  
     return (
       <div className="App">
+       {
+          this.state.isLoaded && (
+            <Header 
+              cityName={this.state.weatherdata.city.name} 
+              countryName={this.state.weatherdata.city.country} 
+              status={this.state.status}
+              error={this.state.error}
+            />
+          )
+        }
         <LocationForm
           query={this.state.query} 
           handleChange={this.handleChange}
           getWeatherData={this.getWeatherData}
         />
-        {
-          this.state.isLoaded && (
-            <Header 
-              cityName={this.state.weatherdata.city.name} 
-              countryName={this.state.weatherdata.city.country} 
-            />
-          )
-        }
         <div className="weather-cards">
           {this.state.isLoaded && this.getWeatherCards()}
         </div>

@@ -34,7 +34,7 @@ header {
 
 .location-form {
   text-align: center;
-  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
 .location-form input[type="text"],
@@ -58,4 +58,9 @@ header {
   color: white;
   text-align: center;
   text-decoration: none;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
 }
