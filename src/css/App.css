@@ -46,7 +46,11 @@ header {
 
 .weather-cards__card--snow {
   background: lightgoldenrodyellow;
-  color: #333;
+  color: #000;
+}
+
+.weather-cards__card--snow i{
+  color: #000;
 }
 
 .location-form {
