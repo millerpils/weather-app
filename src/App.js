@@ -14,7 +14,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      error: null,
+      error: "",
+      status: "",
       query: "london,gb",
       weatherdata: {},
       isLoaded: false
@@ -34,10 +35,18 @@ class App extends Component {
       .then( result => result.json() )
       .then ( 
         (result) => {
-          this.setState({ 
-            weatherdata: result,
-            isLoaded: true
-          })
+          if ( result.cod === '200') {
+            console.log(result.cod)
+            this.setState({ 
+              weatherdata: result,
+              isLoaded: true
+            })
+          } else {
+            this.setState({
+              status: result.cod,
+              error: "Couldn't find town/city."
+            })
+          }
       },
       (error) => {
         this.setState({
@@ -69,7 +78,7 @@ class App extends Component {
     return cards
   }
 
-  render() {
+  render() {  
     return (
       <div className="App">
         <LocationForm
