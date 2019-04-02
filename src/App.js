@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import './App.css';
 import WeatherCard from './components/WeatherCard'
 import Header from './components/Header'
+import LocationForm from './components/LocationForm'
 
 const config = {
-  API: "http://api.openweathermap.org/data/2.5/forecast?id=2643743&units=metric&APPID=",
+  API: "http://api.openweathermap.org/data/2.5/forecast?",
   API_KEY: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
 }
 
@@ -14,15 +15,17 @@ class App extends Component {
     super()
     this.state = {
       error: null,
+      query: "london,gb",
       weatherdata: {},
       isLoaded: false
     }
-
-    this.getWeatherCards = this.getWeatherCards.bind(this)
   }
 
   componentDidMount() {
-    fetch(config.API + config.API_KEY)
+
+    let URL = config.API + 'q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
+
+    fetch(URL)
       .then( result => result.json() )
       .then ( 
         (result) => {
@@ -58,6 +61,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <LocationForm />
         {
           this.state.isLoaded && (
             <Header 

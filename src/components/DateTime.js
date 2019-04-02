@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
 const days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat']
 
+/** props = datetime **/
+
 class DateTime extends Component {
 
   constructor(props) {
@@ -11,7 +13,6 @@ class DateTime extends Component {
       dateInMilliseconds: props.datetime * 1000
     }
   }
-
 
   getTheHours(date) {
     let hours = date.getHours()

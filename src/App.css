@@ -25,3 +25,16 @@ header {
 .weather-cards .card.rain {
   background: darkblue;
 }
+
+.location-form {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.location-form input[type="text"]{
+  padding: .5rem;
+}
+
+.location-form input[type="submit"]{
+  margin-top: 1rem;
+}
