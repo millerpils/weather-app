@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
+const days = ['Sun','Mon','Tues','Wed','Thurs','Fri','Sat']
 
 class DateTime extends Component {
 
@@ -10,36 +10,42 @@ class DateTime extends Component {
       months: months,
       dateInMilliseconds: props.datetime * 1000
     }
-    
-    this.getDate = this.getDate.bind(this)
   }
 
-  getDate() {
-    return new Date(this.state.dateInMilliseconds)
+
+  getTheHours(date) {
+    let hours = date.getHours()
+
+    if ( hours < 13) {
+      hours += ':00 am'
+    } else {
+      hours += ':00 pm'
+    }
+    return hours
   }
   
-  getDay() {
-    let date = this.getDate()
+  getTheDay(date) {
     let day = date.getDay()
     return days[day]
   }
   
-  getMonth() {
-    let date = this.getDate()
+  getTheMonth(date) {
     let month = date.getMonth()
     return months[month]
   }
 
-  getYear() {
-    let date = this.getDate()
+  getTheYear(date) {
     return date.getFullYear()
   }
 
   render() {
-    let dateString = this.getDay()+', ' + this.getMonth() + ', ' + this.getYear()
+    let date = new Date(this.state.dateInMilliseconds)
+    let dateString = this.getTheDay(date) + ' ' + this.getTheMonth(date) + ' ' + date.getDay() + ', ' + this.getTheYear(date)
+
     return (
       <div>
         <h3>{dateString}</h3>
+        <p>{this.getTheHours(date)}</p>
       </div>
     )
   }
