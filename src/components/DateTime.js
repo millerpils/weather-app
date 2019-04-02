@@ -14,7 +14,7 @@ class DateTime extends Component {
     }
   }
 
-  getTheHours(date) {
+  getTheHours = (date) => {
     let hours = date.getHours()
 
     if ( hours < 13) {
@@ -25,21 +25,21 @@ class DateTime extends Component {
     return hours
   }
   
-  getTheDay(date) {
+  getTheDay = (date) => {
     let day = date.getDay()
     return days[day]
   }
   
-  getTheMonth(date) {
+  getTheMonth = (date) => {
     let month = date.getMonth()
     return months[month]
   }
 
-  getTheYear(date) {
+  getTheYear = (date) => {
     return date.getFullYear()
   }
 
-  render() {
+  render = () => {
     let date = new Date(this.state.dateInMilliseconds)
     let dateString = this.getTheDay(date) + ' ' + this.getTheMonth(date) + ' ' + date.getDay() + ', ' + this.getTheYear(date)
 

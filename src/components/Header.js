@@ -1,20 +1,19 @@
 import React from 'react';
 
-function Header(props) {
-
-  let error;
-
-  console.log(props.status)
-  if ( props.status !== '200' ) {
-    error = <p className="error">{props.error}</p>
-  } 
-
-  return (
-    <header>
-      <h2>{props.cityName}, {props.countryName}</h2>
-      {error}
-    </header>
-  )
+const Header = (props) => {
+  if ( props.status !== '200' ) { 
+    return (
+      <header>
+        <p className="error">{props.error}</p>
+      </header>
+    )
+  } else {
+    return (
+      <header>
+        <h2>{props.cityName}, {props.countryName}</h2>
+      </header>
+    )
+  }
 }
 
 export default Header

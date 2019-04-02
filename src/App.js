@@ -21,13 +21,10 @@ class App extends Component {
       isLoaded: false
     }
 
-    this.handleChange = this.handleChange.bind(this)
-    this.getWeatherData = this.getWeatherData.bind(this)
-
     this.getWeatherData()
   }
 
-  getWeatherData() {
+  getWeatherData = () => {
     let URL = config.API + '?q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
 
     fetch(URL)
@@ -43,7 +40,7 @@ class App extends Component {
           } else {
             this.setState({
               status: result.cod,
-              error: "Couldn't find town/city.",
+              error: result.message,
               isLoaded: false
             })
           }
@@ -57,7 +54,7 @@ class App extends Component {
     )
   }
 
-  handleChange(event) {
+  handleChange = (event) => {
     const { name, value } = event.target
 
     this.setState({
@@ -65,7 +62,7 @@ class App extends Component {
     })
   }
 
-  getWeatherCards() {
+  getWeatherCards = () => {
     let cards = []
     for (let i = 0; i < this.state.weatherdata.cnt; i++) {
       cards.push(
@@ -78,33 +75,51 @@ class App extends Component {
     return cards
   }
 
-  render() {  
-    return (
-      <div className="App">
-       {
-          this.state.isLoaded && (
-            <Header 
-              cityName={this.state.weatherdata.city.name} 
-              countryName={this.state.weatherdata.city.country} 
-              status={this.state.status}
-              error={this.state.error}
-            />
-          )
-        }
-        <LocationForm
-          query={this.state.query} 
-          handleChange={this.handleChange}
-          getWeatherData={this.getWeatherData}
-        />
-        {
-          this.state.isLoaded && (
-            <div className="weather-cards">
-              {this.getWeatherCards()}
-            </div>
-          )
-        }
-      </div>
+  getlocationForm = () => {
+    return(
+      <LocationForm
+        query={this.state.query} 
+        handleChange={this.handleChange}
+        getWeatherData={this.getWeatherData}
+      />
     )
+  }
+
+  render = () => {
+    if (this.state.status !== '200') {
+      return (
+        <div className="App">
+          <Header 
+            status={this.state.status}
+            error={this.state.error}
+          />
+          {this.getlocationForm()}
+        </div>
+      )
+    } else {
+      return (
+        <div className="App">
+        {
+            this.state.isLoaded && (
+              <Header 
+                cityName={this.state.weatherdata.city.name} 
+                countryName={this.state.weatherdata.city.country} 
+                status={this.state.status}
+                error={this.state.error}
+              />
+            )
+          }
+          {this.getlocationForm()}
+          {
+            this.state.isLoaded && (
+              <div className="weather-cards">
+                {this.getWeatherCards()}
+              </div>
+            )
+          }
+        </div>
+      )
+    }
   }
 }
 

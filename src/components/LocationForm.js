@@ -1,6 +1,6 @@
 import React from 'react'
 
-function LocationForm(props) {
+const LocationForm = (props) => {
 
   let handleChange = function(event) {
     props.handleChange(event)

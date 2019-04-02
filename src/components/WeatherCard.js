@@ -3,7 +3,7 @@ import DateTime from './DateTime'
 
 /** props = weatherList **/
 
-function WeatherCard(props) {
+const WeatherCard = (props) => {
   let classList = 'card ' + props.weatherList.weather[0].main.toLowerCase()
 
   return (
