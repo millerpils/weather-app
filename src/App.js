@@ -99,24 +99,24 @@ class App extends Component {
     } else {
       return (
         <div className="App">
-        {
-            this.state.isLoaded && (
-              <Header 
-                cityName={this.state.weatherdata.city.name} 
-                countryName={this.state.weatherdata.city.country} 
-                status={this.state.status}
-                error={this.state.error}
-              />
-            )
-          }
-          {this.getlocationForm()}
           {
-            this.state.isLoaded && (
-              <div className="weather-cards">
-                {this.getWeatherCards()}
-              </div>
-            )
-          }
+              this.state.isLoaded && (
+                <Header 
+                  cityName={this.state.weatherdata.city.name} 
+                  countryName={this.state.weatherdata.city.country} 
+                  status={this.state.status}
+                  error={this.state.error}
+                />
+              )
+            }
+            {this.getlocationForm()}
+            {
+              this.state.isLoaded && (
+                <div className="weather-cards">
+                  {this.getWeatherCards()}
+                </div>
+              )
+            }
         </div>
       )
     }
