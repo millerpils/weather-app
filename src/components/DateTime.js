@@ -46,7 +46,7 @@ class DateTime extends Component {
     return (
       <div>
         <h3>{dateString}</h3>
-        <p>{this.getTheHours(date)}</p>
+        {this.getTheHours(date)}
       </div>
     )
   }

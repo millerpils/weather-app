@@ -9,25 +9,38 @@ header {
   grid-row-gap: 1rem;
 }
 
-.weather-cards .card {
+.weather-cards__card ul{
+  text-align: left;
+}
+
+.weather-cards__card {
   text-align: center;
+  color: white;
+  position: relative;
+}
+
+.weather-cards__card i{
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+  font-size: 2rem;
   color: white;
 }
 
-.weather-cards .card.clouds {
+.weather-cards__card--clouds {
   background: gray;
 }
 
-.weather-cards .card.clear {
+.weather-cards__card--clear {
   background: lightblue;
   color: #333;
 }
 
-.weather-cards .card.rain {
+.weather-cards__card--rain {
   background: darkblue;
 }
 
-.weather-cards .card.snow {
+.weather-cards__card--snow {
   background: lightgoldenrodyellow;
   color: #333;
 }
