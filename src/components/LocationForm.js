@@ -1,40 +1,34 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-class LocationForm extends Component {
-  constructor() {
-    super()
+function LocationForm(props) {
 
-    this.state = {
-      query: ""
-    }
-
-    this.handleChange = this.handleChange.bind(this)
+  let handleChange = function(event) {
+    props.handleChange(event)
   }
 
-  handleChange(event) {
-    const { name, value } = event.target
-
-    this.setState({
-      [name]: value
-    })
+  let handleClick = function(event) {
+    event.preventDefault()
+    props.getWeatherData()
   }
 
-  render() {
-    return (
-      <div className="location-form">
-        <form>
-          <input 
-            type="text" 
-            name="query" 
-            value={this.state.query} 
-            onChange={this.handleChange} 
-          /> 
-          <br />
-          <input type="submit" name="submitButton" />
-        </form>
-      </div>
-    )
-  }
+  return (
+    <div className="location-form">
+      <form>
+        <input 
+          type="text" 
+          name="query" 
+          value={props.query} 
+          placeholder="Enter a location..."
+          onChange={handleChange} 
+        /> 
+        <br />
+        <input 
+          type="submit" 
+          onClick={handleClick}
+        />
+      </form>
+    </div>
+  )
 }
 
 export default LocationForm

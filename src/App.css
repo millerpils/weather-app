@@ -20,10 +20,16 @@ header {
 
 .weather-cards .card.clear {
   background: lightblue;
+  color: #333;
 }
 
 .weather-cards .card.rain {
   background: darkblue;
+}
+
+.weather-cards .card.snow {
+  background: lightgoldenrodyellow;
+  color: #333;
 }
 
 .location-form {

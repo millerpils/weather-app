@@ -5,7 +5,7 @@ import Header from './components/Header'
 import LocationForm from './components/LocationForm'
 
 const config = {
-  API: "http://api.openweathermap.org/data/2.5/forecast?",
+  API: "http://api.openweathermap.org/data/2.5/forecast",
   API_KEY: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
 }
 
@@ -19,11 +19,16 @@ class App extends Component {
       weatherdata: {},
       isLoaded: false
     }
+
+    this.handleChange = this.handleChange.bind(this)
+    this.getWeatherData = this.getWeatherData.bind(this)
+
+    this.getWeatherData()
   }
 
-  componentDidMount() {
-
-    let URL = config.API + 'q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
+  getWeatherData() {
+    let URL = config.API + '?q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
+    console.log(URL)
 
     fetch(URL)
       .then( result => result.json() )
@@ -43,9 +48,16 @@ class App extends Component {
     )
   }
 
+  handleChange(event) {
+    const { name, value } = event.target
+
+    this.setState({
+      [name]: value
+    })
+  }
+
   getWeatherCards() {
     let cards = []
-    
     for (let i = 0; i < this.state.weatherdata.cnt; i++) {
       cards.push(
         <WeatherCard 
@@ -54,14 +66,17 @@ class App extends Component {
         />
       )
     }
-    
     return cards
   }
 
   render() {
     return (
       <div className="App">
-        <LocationForm />
+        <LocationForm
+          query={this.state.query} 
+          handleChange={this.handleChange}
+          getWeatherData={this.getWeatherData}
+        />
         {
           this.state.isLoaded && (
             <Header 
