@@ -6,9 +6,7 @@ function Header(props) {
 
   if ( props.status !== '200' ) {
     error = <p className="error">{props.error}</p>
-  } else {
-    error = ""
-  }
+  } 
 
   return (
     <header>
