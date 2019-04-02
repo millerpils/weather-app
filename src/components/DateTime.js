@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 const months = ['January','February','March','April','May','June','July','August','September','October','November','December']
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday']
 
 class DateTime extends Component {
 
@@ -17,21 +18,21 @@ class DateTime extends Component {
     return new Date(this.state.dateInMilliseconds)
   }
   
-  getYear() {
-    let date = this.getDate()
-    return date.getFullYear()
-  }
-  
   getDay() {
     let date = this.getDate()
     let day = date.getDay()
-    return day
+    return days[day]
   }
   
   getMonth() {
     let date = this.getDate()
     let month = date.getMonth()
     return months[month]
+  }
+
+  getYear() {
+    let date = this.getDate()
+    return date.getFullYear()
   }
 
   render() {
