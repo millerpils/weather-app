@@ -12,8 +12,8 @@ function LocationForm(props) {
   }
 
   return (
-    <div className="location-form">
-      <form>
+    <div>
+      <form className="location-form">
         <input 
           type="text" 
           name="query" 
@@ -21,9 +21,7 @@ function LocationForm(props) {
           placeholder="Enter a location..."
           onChange={handleChange} 
         /> 
-        <button onClick={handleClick}>
-          Submit
-        </button>
+        <button onClick={handleClick}>Submit</button>
       </form>
     </div>
   )

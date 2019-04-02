@@ -43,7 +43,8 @@ class App extends Component {
           } else {
             this.setState({
               status: result.cod,
-              error: "Couldn't find town/city."
+              error: "Couldn't find town/city.",
+              isLoaded: false
             })
           }
       },
@@ -95,9 +96,13 @@ class App extends Component {
           handleChange={this.handleChange}
           getWeatherData={this.getWeatherData}
         />
-        <div className="weather-cards">
-          {this.state.isLoaded && this.getWeatherCards()}
-        </div>
+        {
+          this.state.isLoaded && (
+            <div className="weather-cards">
+              {this.getWeatherCards()}
+            </div>
+          )
+        }
       </div>
     )
   }

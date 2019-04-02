@@ -4,6 +4,7 @@ function Header(props) {
 
   let error;
 
+  console.log(props.status)
   if ( props.status !== '200' ) {
     error = <p className="error">{props.error}</p>
   } 
