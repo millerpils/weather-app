@@ -4,8 +4,6 @@ import WeatherCard from './components/WeatherCard'
 import Header from './components/Header'
 import LocationForm from './components/LocationForm'
 
-
-
 const config = {
   API: "http://api.openweathermap.org/data/2.5/forecast",
   API_KEY: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY

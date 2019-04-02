@@ -36,7 +36,7 @@ const WeatherCard = (props) => {
         <li>{props.weatherList.main.temp_max}&deg;c / {props.weatherList.main.temp_min}&deg;c</li>
         <li>{props.weatherList.weather[0].description}</li>
       </ul>
-      <i class={getWeatherIcon(props.weatherList.weather[0].main.toLowerCase())}></i>
+      <i className={getWeatherIcon(props.weatherList.weather[0].main.toLowerCase())}></i>
     </div>
   )
 }
