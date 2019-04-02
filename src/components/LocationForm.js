@@ -21,11 +21,9 @@ function LocationForm(props) {
           placeholder="Enter a location..."
           onChange={handleChange} 
         /> 
-        <br />
-        <input 
-          type="submit" 
-          onClick={handleClick}
-        />
+        <button onClick={handleClick}>
+          Submit
+        </button>
       </form>
     </div>
   )

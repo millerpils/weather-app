@@ -37,10 +37,25 @@ header {
   margin-top: 2rem;
 }
 
+.location-form input[type="text"],
+.location-form button {
+  font-size: 1.5rem;
+}
+
 .location-form input[type="text"]{
   padding: .5rem;
 }
 
-.location-form input[type="submit"]{
+.location-form button {
+  padding: .6rem;
+}
+
+.location-form button {
   margin-top: 1rem;
+  margin-left: 1rem;
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
 }
