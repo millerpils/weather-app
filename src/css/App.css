@@ -36,6 +36,10 @@ header {
   color: #333;
 }
 
+.weather-cards__card--clear i{
+  color: yellow;
+}
+
 .weather-cards__card--rain {
   background: darkblue;
 }
