@@ -14,10 +14,10 @@ const SearchForm = (props) => {
 
     if (e.target.attributes.query.value === 'id') { 
       props.setQueryID()
-      props.getWeatherData()
-    } else {
-      props.getWeatherData()
-    }
+    } 
+    
+    props.getWeatherData()
+    
   }
 
   return (
