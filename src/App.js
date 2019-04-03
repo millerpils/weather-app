@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import './css/App.css';
 import WeatherCard from './components/WeatherCard'
 import Header from './components/Header'
-import LocationForm from './components/LocationForm'
+import SearchForm from './components/SearchForm'
+import cityData from './json/city.list'
 
 const config = {
-  API: "https://api.openweathermap.org/data/2.5/forecast",
+  API: 'https://api.openweathermap.org/data/2.5/forecast',
   API_KEY: process.env.REACT_APP_OPEN_WEATHER_MAP_API_KEY
 }
 
@@ -14,9 +15,12 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      error: "",
-      status: "",
-      query: "london,gb",
+      error: '',
+      status: '',
+      query: 'london,gb',
+      queryLabel: '',
+      queryType: 'q',
+      cityData: cityData, 
       weatherdata: {},
       isLoaded: false
     }
@@ -25,7 +29,7 @@ class App extends Component {
   }
 
   getWeatherData = () => {
-    let URL = config.API + '?q=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
+    let URL = config.API + '?' + this.state.queryType + '=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
 
     fetch(URL)
       .then( result => result.json() )
@@ -35,6 +39,7 @@ class App extends Component {
             this.setState({ 
               status: result.cod,
               weatherdata: result,
+              queryLabel: result.city.name,
               isLoaded: true
             })
           } else {
@@ -56,7 +61,6 @@ class App extends Component {
 
   handleChange = (event) => {
     const { name, value } = event.target
-
     this.setState({
       [name]: value
     })
@@ -75,11 +79,28 @@ class App extends Component {
     return cards
   }
 
+  setQueryType = (query_type) => {
+    this.setState({
+      queryType: query_type
+    })
+  }
+
+  setQueryID = () => {
+    let randomID = Math.floor(Math.random() * this.state.cityData.length)
+    let randomCityID = this.state.cityData[randomID].id
+
+    this.setState({
+      query: randomCityID
+    })
+  }
+
   getlocationForm = () => {
     return(
-      <LocationForm
-        query={this.state.query} 
+      <SearchForm
+        queryLabel={this.state.queryLabel}
         handleChange={this.handleChange}
+        setQueryType={this.setQueryType}
+        setQueryID={this.setQueryID}
         getWeatherData={this.getWeatherData}
       />
     )
@@ -88,7 +109,7 @@ class App extends Component {
   render = () => {
     if (this.state.status !== '200') {
       return (
-        <div className="App">
+        <div className='App'>
           <Header 
             status={this.state.status}
             error={this.state.error}
@@ -98,7 +119,7 @@ class App extends Component {
       )
     } else {
       return (
-        <div className="App">
+        <div className='App'>
           {
             this.state.isLoaded && (
               <Header 
@@ -112,7 +133,7 @@ class App extends Component {
           {this.getlocationForm()}
           {
             this.state.isLoaded && (
-              <div className="weather-cards">
+              <div className='weather-cards'>
                 {this.getWeatherCards()}
               </div>
             )
