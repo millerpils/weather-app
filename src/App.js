@@ -18,7 +18,6 @@ class App extends Component {
       error: '',
       status: '',
       query: 'london,gb',
-      queryLabel: '',
       queryType: 'q',
       cityData: cityData, 
       weatherdata: {},
@@ -39,7 +38,7 @@ class App extends Component {
             this.setState({ 
               status: result.cod,
               weatherdata: result,
-              queryLabel: result.city.name,
+              query: result.city.name,
               isLoaded: true
             })
           } else {
@@ -79,25 +78,31 @@ class App extends Component {
     return cards
   }
 
-  setQueryType = (query_type) => {
+  setQueryType = (queryType) => {
+    console.log(  'arg:' + queryType)
     this.setState({
-      queryType: query_type
+      queryType: queryType
     })
+
+    console.log('actual:' + this.state.queryType)
   }
 
   setQueryID = () => {
     let randomID = Math.floor(Math.random() * this.state.cityData.length)
     let randomCityID = this.state.cityData[randomID].id
 
+    console.log(this.state.cityData[randomID].id)
     this.setState({
       query: randomCityID
     })
+
+    console.log('query:' + this.state.query)
   }
 
   getlocationForm = () => {
     return(
       <SearchForm
-        queryLabel={this.state.queryLabel}
+        query={this.state.query}
         handleChange={this.handleChange}
         setQueryType={this.setQueryType}
         setQueryID={this.setQueryID}
