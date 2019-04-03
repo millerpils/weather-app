@@ -12,12 +12,9 @@ const SearchForm = (props) => {
 
     props.setQueryType(e.target.attributes.query.value)
 
-    if (e.target.attributes.query.value === 'id') { 
-      props.setQueryID()
-    } 
+    if (e.target.attributes.query.value === 'id') props.setQueryID() 
     
     props.getWeatherData()
-    
   }
 
   return (

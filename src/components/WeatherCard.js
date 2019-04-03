@@ -28,6 +28,12 @@ const WeatherCard = (props) => {
     return classList
   }
 
+  const getIcon = (dateTime) => {
+    return (
+      <i className={getWeatherIcon(props.weatherList.weather[0].main.toLowerCase())}></i>
+    )
+  }
+
   return (
     <div className={classList}>
       <DateTime datetime={props.weatherList.dt} />
@@ -40,10 +46,7 @@ const WeatherCard = (props) => {
           {props.weatherList.weather[0].description}
         </li>
       </ul>
-      <i 
-        className={getWeatherIcon(props.weatherList.weather[0].main.toLowerCase())}
-      >
-      </i>
+      {getIcon(props.weatherList.dt)}
     </div>
   )
 }

@@ -28,6 +28,7 @@ class App extends Component {
     this.setQueryType = this.setQueryType.bind(this)
     this.setQueryID = this.setQueryID.bind(this)
     this.handleChange = this.handleChange.bind(this)
+    this.getWeatherData = this.getWeatherData.bind(this)
 
     this.getWeatherData()
   }
