@@ -8,17 +8,14 @@ const SearchForm = (props) => {
 
   let handleClick = function(e) {
     e.preventDefault()
-  
+    //const el = document.getElementById('queryString')
+
     props.setQueryType(e.target.attributes.query.value)
 
     if (e.target.attributes.query.value === 'id') { 
       props.setQueryID()
       props.getWeatherData()
-    } 
-    
-    const el = document.getElementById('query')
-
-    if ( el.value !== '' ) {
+    } else {
       props.getWeatherData()
     }
   }
@@ -28,9 +25,9 @@ const SearchForm = (props) => {
       <form className="search-form">
         <input 
           type="text" 
-          id="query"
-          name="query" 
-          value={props.query}
+          id="queryString"
+          name="queryString" 
+          value={props.queryString}
           placeholder="Enter a location..."
           onChange={handleChange} 
         /> 

@@ -17,29 +17,39 @@ class App extends Component {
     this.state = {
       error: '',
       status: '',
-      query: 'london,gb',
+      queryString: 'london',
+      queryID: '',
       queryType: 'q',
       cityData: cityData, 
-      weatherdata: {},
+      weatherData: {},
       isLoaded: false
     }
+
+    this.setQueryType = this.setQueryType.bind(this)
+    this.setQueryID = this.setQueryID.bind(this)
+    this.handleChange = this.handleChange.bind(this)
 
     this.getWeatherData()
   }
 
   getWeatherData = () => {
-    let URL = config.API + '?' + this.state.queryType + '=' + this.state.query + '&units=metric&APPID=' + config.API_KEY
+    let URL
+    URL = config.API + '?' + this.state.queryType + '='
+    URL += this.state.queryType === 'q' ? this.state.queryString : this.state.queryID
+    URL += '&units=metric&APPID=' + config.API_KEY
+
+    console.log(URL)
 
     fetch(URL)
       .then( result => result.json() )
       .then ( 
         (result) => {
+          console.log(result)
           if ( result.cod === '200') {
             this.setState({ 
-              status: result.cod,
-              weatherdata: result,
-              query: result.city.name,
-              isLoaded: true
+              weatherData: result,
+              isLoaded: true,
+              status: result.cod
             })
           } else {
             this.setState({
@@ -58,8 +68,8 @@ class App extends Component {
     )
   }
 
-  handleChange = (event) => {
-    const { name, value } = event.target
+  handleChange = (e) => {
+    const { name, value } = e.target
     this.setState({
       [name]: value
     })
@@ -67,11 +77,11 @@ class App extends Component {
 
   getWeatherCards = () => {
     let cards = []
-    for (let i = 0; i < this.state.weatherdata.cnt; i++) {
+    for (let i = 0; i < this.state.weatherData.cnt; i++) {
       cards.push(
         <WeatherCard 
           key={i} 
-          weatherList={this.state.weatherdata.list[i]} 
+          weatherList={this.state.weatherData.list[i]} 
         />
       )
     }
@@ -79,30 +89,24 @@ class App extends Component {
   }
 
   setQueryType = (queryType) => {
-    console.log(  'arg:' + queryType)
     this.setState({
       queryType: queryType
     })
-
-    console.log('actual:' + this.state.queryType)
   }
 
   setQueryID = () => {
     let randomID = Math.floor(Math.random() * this.state.cityData.length)
     let randomCityID = this.state.cityData[randomID].id
 
-    console.log(this.state.cityData[randomID].id)
     this.setState({
-      query: randomCityID
+      queryID: randomCityID
     })
-
-    console.log('query:' + this.state.query)
   }
 
   getlocationForm = () => {
     return(
       <SearchForm
-        query={this.state.query}
+        queryString={this.state.queryString}
         handleChange={this.handleChange}
         setQueryType={this.setQueryType}
         setQueryID={this.setQueryID}
@@ -128,8 +132,8 @@ class App extends Component {
           {
             this.state.isLoaded && (
               <Header 
-                cityName={this.state.weatherdata.city.name} 
-                countryName={this.state.weatherdata.city.country} 
+                cityName={this.state.weatherData.city.name} 
+                countryName={this.state.weatherData.city.country} 
                 status={this.state.status}
                 error={this.state.error}
               />
