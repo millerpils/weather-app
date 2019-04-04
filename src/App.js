@@ -17,7 +17,7 @@ class App extends Component {
     this.state = {
       error: '',
       status: '',
-      queryString: 'london',
+      queryString: 'London',
       queryID: '',
       queryType: 'q',
       cityData: cityData, 
@@ -46,9 +46,10 @@ class App extends Component {
       .then ( 
         (result) => {
           console.log(result)
-          if ( result.cod === '200') {
+          if ( result.cod === '200' ) {
             this.setState({ 
               weatherData: result,
+              queryString: result.city.name,
               isLoaded: true,
               status: result.cod
             })

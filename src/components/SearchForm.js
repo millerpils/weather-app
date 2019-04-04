@@ -8,13 +8,14 @@ const SearchForm = (props) => {
 
   let handleClick = function(e) {
     e.preventDefault()
-    //const el = document.getElementById('queryString')
+    const el = document.getElementById('queryString')
 
     props.setQueryType(e.target.attributes.query.value)
 
-    if (e.target.attributes.query.value === 'id') props.setQueryID() 
-    
-    props.getWeatherData()
+    if (e.target.attributes.query.value === 'id') { 
+      props.setQueryID()
+    }
+    props.getWeatherData() 
   }
 
   return (
