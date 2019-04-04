@@ -17,7 +17,7 @@ class App extends Component {
     this.state = {
       error: '',
       status: '',
-      queryString: 'London',
+      queryString: 'Prague',
       queryID: '',
       queryType: 'q',
       cityData: cityData, 

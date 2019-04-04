@@ -53,6 +53,14 @@ header {
   color: #000;
 }
 
+.weather-cards__card--clear i.night::before {
+  content: "\F186";
+}
+
+.weather-cards__card--clear i.night {
+  color: #fff;
+}
+
 .search-form {
   text-align: center;
   margin-bottom: 2rem;
